@@ -1,11 +1,35 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
+import * as Speech from 'expo-speech';
+import { speech } from './text';
 
 export default function App() {
+  const speak = () => {
+    console.log('in speak');
+    Speech.speak(speech);
+  };
+
+  const stop = () => {
+    console.log('stop');
+    Speech.stop();
+  };
+
+  const pause = () => {
+    console.log('pause');
+    Speech.pause();
+  };
+
+  const resume = () => {
+    console.log('resume');
+    Speech.resume();
+  };
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Text style={styles.text}>Talking app</Text>
+      <Button title="speak" onPress={speak} />
+      <Button title="pause" onPress={pause} />
+      <Button title="resume" onPress={resume} />
+      <Button title="stop" onPress={stop} />
     </View>
   );
 }
@@ -16,5 +40,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  text: {
+    fontSize: 14,
   },
 });
